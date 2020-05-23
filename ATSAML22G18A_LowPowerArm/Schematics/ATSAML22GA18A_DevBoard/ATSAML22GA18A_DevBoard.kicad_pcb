@@ -3,7 +3,7 @@
   (general
     (thickness 1.6)
     (drawings 10)
-    (tracks 459)
+    (tracks 460)
     (zones 0)
     (modules 43)
     (nets 56)
@@ -11,8 +11,8 @@
 
   (page A4)
   (layers
-    (0 F.Cu signal hide)
-    (31 B.Cu signal hide)
+    (0 F.Cu signal)
+    (31 B.Cu signal)
     (32 B.Adhes user)
     (33 F.Adhes user)
     (34 B.Paste user)
@@ -2251,6 +2251,7 @@
   (segment (start 154.178 72.644) (end 153.797 72.263) (width 0.25) (layer F.Cu) (net 8))
   (segment (start 157.353 72.644) (end 154.178 72.644) (width 0.25) (layer F.Cu) (net 8))
   (segment (start 151.892 70.485) (end 153.797 72.263) (width 0.25) (layer F.Cu) (net 8))
+  (segment (start 174.029001 98.385999) (end 174.879 97.536) (width 0.25) (layer F.Cu) (net 8))
   (segment (start 176.657 93.091) (end 178.562 94.996) (width 0.25) (layer F.Cu) (net 9))
   (segment (start 170.9505 88.221) (end 175.089 88.221) (width 0.25) (layer F.Cu) (net 9))
   (segment (start 176.657 89.789) (end 176.657 93.091) (width 0.25) (layer F.Cu) (net 9))
@@ -2513,7 +2514,7 @@
   (segment (start 159.258 80.6645) (end 156.7035 78.11) (width 0.25) (layer F.Cu) (net 52))
   (segment (start 159.258 81.102) (end 159.258 80.6645) (width 0.25) (layer F.Cu) (net 52))
 
-  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 0) (hatch edge 0.508)
+  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 5ECA72AB) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -2977,7 +2978,7 @@
       )
     )
   )
-  (zone (net 8) (net_name VCC) (layer B.Cu) (tstamp 0) (hatch edge 0.508)
+  (zone (net 8) (net_name VCC) (layer B.Cu) (tstamp 5ECA72A8) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
