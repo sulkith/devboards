@@ -34,6 +34,6 @@ main.elf: $(OBJECTS) $(HEADERS)
 	$(COMPILE) -o main.elf $(OBJECTS)
 main.hex: main.elf
 	rm -f main.hex
-	arm-none-eabi-objcopy -j .text -j .data -O ihex main.elf main.hex
-	arm-none-eabi-size main.elf -A --totals
+	arm-none-eabi-objcopy -j .text -j .data -j .init -j .fini -j .rodata -j .ARM.exidx -j.eh_frame -O ihex main.elf main.hex
+	arm-none-eabi-size main.elf -A --totals -x
 
