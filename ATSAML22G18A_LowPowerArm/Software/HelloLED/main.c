@@ -13,20 +13,19 @@ void delay(int n)
 
 void display(uint8_t code)
 {
-	REG_PORT_OUTSET0 = (code<<8)&0xFF00;
-	REG_PORT_OUTCLR0 = (~(code)<<8)&0xFF00;
+	PORT->Group[0].OUTSET.reg = (code<<8)&0xFF00;
+	PORT->Group[0].OUTCLR.reg = (~(code)<<8)&0xFF00;
 
 }
 int main()
 {
-	//    REG_PORT_DIR0 |= (1<<28);
-	REG_PORT_DIR0 |= 0xFF00;
+	PORT->Group[0].DIR.reg = 0xFF00;
 	while(1)
 	{
 		display(0xAA);
 		for(uint8_t i = 0;i<20;i++)
 		{
-			REG_PORT_OUTTGL0 |= 0xFF00;
+			PORT->Group[0].OUTTGL.reg |= 0xFF00;
 			delay(500);
 		}
 		for(uint8_t i = 0;i<100;i++)
