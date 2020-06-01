@@ -1,3 +1,5 @@
 *.o
 *.hex
 *.elf
+*.d
+xdk_asf
