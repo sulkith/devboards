@@ -11,6 +11,7 @@ OBJS=$(BOOTUP) main.o
 
 # Tools
 CC=arm-none-eabi-gcc
+CPP=arm-none-eabi-g++
 LD=arm-none-eabi-gcc
 AR=arm-none-eabi-ar
 AS=arm-none-eabi-as
@@ -36,11 +37,15 @@ $(ELF):$(OBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 	$(CC) -MM $(CFLAGS) $< > $*.d
 
+.cpp.o:
+	$(CPP) -c $(CFLAGS) $< -o $@
+	$(CPP) -MM $(CFLAGS) $< > $*.d
+
 .s.o:
 	$(AS) $< -o $@
 
-#clean:
-#    rm -f $(OBJS) $(OBJS:.o=.d) $(ELF) startup_stm32f* $(CLEANOTHER)
+clean:
+	rm -f $(OBJS) $(OBJS:.o=.d) $(ELF) $(CLEANOTHER)
 
 debug:  $(ELF)
 	arm-none-eabi-gdb -iex "target extended-remote localhost:3333" $(ELF)
