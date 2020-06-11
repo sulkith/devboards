@@ -1,4 +1,13 @@
 #include <atmel_start.h>
+#include <SSD1306.h>
+
+SSD1306 oled;
+
+void twi_write(unsigned char a, unsigned char* b, unsigned char c, void (*d)(unsigned char, unsigned char*))
+{}
+
+uint8_t twi_wait(){return 0;}
+uint8_t twi_init(){return 0;}
 
 void delay(int n)
 {
@@ -19,7 +28,7 @@ void display(uint8_t code)
 int main(void)
 {
 	atmel_start_init();
-
+	oled.init();
 //	PORT->Group[0].DIR.reg = 0xFF00;
 	while(1)
 	{
