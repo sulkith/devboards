@@ -1,12 +1,14 @@
 
+#atstart/hal/utils/src/utils_syscalls.o \
 
 # List the object files
 OBJS +=  \
 atstart/hal/src/hal_io.o \
+atstart/hpl/systick/hpl_systick.o \
 atstart/hal/src/hal_calendar.o \
-atstart/hal/utils/src/utils_syscalls.o \
 atstart/hal/src/hal_spi_m_sync.o \
 atstart/hal/src/hal_timer.o \
+atstart/hal/src/hal_i2c_m_sync.o \
 atstart/hal/src/hal_delay.o \
 atstart/hpl/oscctrl/hpl_oscctrl.o \
 atstart/hpl/core/hpl_init.o \
@@ -19,6 +21,7 @@ atstart/hpl/mclk/hpl_mclk.o \
 atstart/hpl/gclk/hpl_gclk.o \
 atstart/hal/src/hal_init.o \
 main.o \
+i2cadap.o \
 atstart/hpl/osc32kctrl/hpl_osc32kctrl.o \
 atstart/hpl/rtc/hpl_rtc.o \
 atstart/examples/driver_examples.o \
@@ -27,7 +30,6 @@ atstart/hal/src/hal_adc_sync.o \
 atstart/hpl/sercom/hpl_sercom.o \
 atstart/gcc/system_saml22.o \
 atstart/hal/src/hal_gpio.o \
-atstart/hpl/i2c/i2c_lite.o \
 atstart/hal/utils/src/utils_event.o \
 atstart/hal/src/hal_sleep.o \
 atstart/atmel_start.o \
@@ -75,19 +77,22 @@ OUTPUT_FILE_NAME :=main
 QUOTE := "
 OUTPUT_FILE_PATH +=$(OUTPUT_FILE_NAME).elf
 OUTPUT_FILE_PATH_AS_ARGS +=$(OUTPUT_FILE_NAME).elf
+ELF = $(OUTPUT_FILE_PATH)
 
 # All Target
 all: $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 
 # Linker target
 
+#-T"atstart/gcc/gcc/saml22g18a_flash.ld" \
+
 $(OUTPUT_FILE_PATH): $(OBJS)
 	@echo Building target: $@
 	@echo Invoking: ARM/GNU Linker
 	$(QUOTE)arm-none-eabi-g++$(QUOTE) -o $(OUTPUT_FILE_NAME).elf $(OBJS_AS_ARGS) -Wl,--start-group -lm -Wl,--end-group -mthumb \
--Wl,-Map="$(OUTPUT_FILE_NAME).map" --specs=nano.specs -Wl,--gc-sections -mcpu=cortex-m0plus \
+-Wl,-Map="$(OUTPUT_FILE_NAME).map" --specs=rdimon.specs -lrdimon -Wl,--gc-sections -mcpu=cortex-m0plus \
  \
--T"atstart/gcc/gcc/saml22g18a_flash.ld" \
+-T"project.ld" \
 -L"atstart/gcc/gcc"
 	@echo Finished building target: $@
 
@@ -155,3 +160,12 @@ clean:
 	rm -f $(OUTPUT_FILE_NAME).a $(OUTPUT_FILE_NAME).hex $(OUTPUT_FILE_NAME).bin \
         $(OUTPUT_FILE_NAME).lss $(OUTPUT_FILE_NAME).eep $(OUTPUT_FILE_NAME).map \
         $(OUTPUT_FILE_NAME).srec
+
+debug:  $(ELF)
+	arm-none-eabi-gdb -iex "target extended-remote localhost:3333" $(ELF)
+
+upload:  $(ELF)
+	arm-none-eabi-gdb --batch -x gdb_upload $(ELF)
+
+openocd:
+	openocd &
