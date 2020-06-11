@@ -1,0 +1,10 @@
+*.atzip
+atstart/*
+*.bin
+*.hex
+*.elf
+*.d
+*.lss
+*.eep
+*.map
+*.o

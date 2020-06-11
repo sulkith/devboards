@@ -1,0 +1,3 @@
+[submodule "ATSAML22G18A_LowPowerArm/Software/I2CTest/lib/SSD1306-AVR"]
+	path = ATSAML22G18A_LowPowerArm/Software/I2CTest/lib/SSD1306-AVR
+	url = git@github.com:sulkith/SSD1306-AVR.git
