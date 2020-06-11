@@ -27,6 +27,9 @@ int main(void)
 	oled.clear();
 	oled.drawString("Hello World!!!",0,0);
 	oled.drawString("Hello World!!!",0,8);
+	oled.drawString("Hello World!!!",0,16);
+	oled.drawString("Hello World!!!",0,24);
+	oled.drawString("Hello World!!!",0,32);
 	oled.show();
 //	PORT->Group[0].DIR.reg = 0xFF00;
 //	i2c_m_sync_get_io_descriptor(&I2C_0, &I2C_0_io);
