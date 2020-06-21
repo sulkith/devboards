@@ -105,7 +105,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	"arm-none-eabi-objdump" -h -S "$(OUTPUT_FILE_NAME).elf" > "$(OUTPUT_FILE_NAME).lss"
 	"arm-none-eabi-size" "$(OUTPUT_FILE_NAME).elf"
 
-	
+
 
 # Compiler targets
 
@@ -162,10 +162,11 @@ clean:
         $(OUTPUT_FILE_NAME).srec
 
 debug:  $(ELF)
+	openocd &
 	arm-none-eabi-gdb -iex "target extended-remote localhost:3333" $(ELF)
+	killall openocd
 
 upload:  $(ELF)
-	arm-none-eabi-gdb --batch -x gdb_upload $(ELF)
-
-openocd:
 	openocd &
+	arm-none-eabi-gdb --batch -x gdb_upload $(ELF)
+	killall openocd
