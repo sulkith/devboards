@@ -31,11 +31,11 @@ endif
 SUB_DIRS +=  \
  \
 atstart/hpl/adc \
-atstart/hpl/i2c \
+atstart/hpl/tc \
 atstart/hpl/osc32kctrl \
+atstart/hpl/systick \
 atstart/hpl/dmac \
 atstart/hal/src \
-atstart/hpl/tc \
 atstart/gcc \
 atstart/hpl/mclk \
 atstart/hal/utils/src \
@@ -51,10 +51,12 @@ atstart/hpl/core
 # List the object files
 OBJS +=  \
 atstart/hal/src/hal_io.o \
+atstart/hpl/systick/hpl_systick.o \
 atstart/hal/src/hal_calendar.o \
 atstart/hal/utils/src/utils_syscalls.o \
 atstart/hal/src/hal_spi_m_sync.o \
 atstart/hal/src/hal_timer.o \
+atstart/hal/src/hal_i2c_m_sync.o \
 atstart/hal/src/hal_delay.o \
 atstart/hpl/oscctrl/hpl_oscctrl.o \
 atstart/hpl/core/hpl_init.o \
@@ -75,7 +77,6 @@ atstart/hal/src/hal_adc_sync.o \
 atstart/hpl/sercom/hpl_sercom.o \
 atstart/gcc/system_saml22.o \
 atstart/hal/src/hal_gpio.o \
-atstart/hpl/i2c/i2c_lite.o \
 atstart/hal/utils/src/utils_event.o \
 atstart/hal/src/hal_sleep.o \
 atstart/atmel_start.o \
@@ -86,10 +87,12 @@ atstart/hpl/adc/hpl_adc.o
 
 OBJS_AS_ARGS +=  \
 "atstart/hal/src/hal_io.o" \
+"atstart/hpl/systick/hpl_systick.o" \
 "atstart/hal/src/hal_calendar.o" \
 "atstart/hal/utils/src/utils_syscalls.o" \
 "atstart/hal/src/hal_spi_m_sync.o" \
 "atstart/hal/src/hal_timer.o" \
+"atstart/hal/src/hal_i2c_m_sync.o" \
 "atstart/hal/src/hal_delay.o" \
 "atstart/hpl/oscctrl/hpl_oscctrl.o" \
 "atstart/hpl/core/hpl_init.o" \
@@ -110,7 +113,6 @@ OBJS_AS_ARGS +=  \
 "atstart/hpl/sercom/hpl_sercom.o" \
 "atstart/gcc/system_saml22.o" \
 "atstart/hal/src/hal_gpio.o" \
-"atstart/hpl/i2c/i2c_lite.o" \
 "atstart/hal/utils/src/utils_event.o" \
 "atstart/hal/src/hal_sleep.o" \
 "atstart/atmel_start.o" \
@@ -130,7 +132,6 @@ DIR_INCLUDES += -I atstart   \
 -I"atstart/hpl/core" \
 -I"atstart/hpl/dmac" \
 -I"atstart/hpl/gclk" \
--I"atstart/hpl/i2c" \
 -I"atstart/hpl/mclk" \
 -I"atstart/hpl/osc32kctrl" \
 -I"atstart/hpl/oscctrl" \
@@ -138,9 +139,9 @@ DIR_INCLUDES += -I atstart   \
 -I"atstart/hpl/port" \
 -I"atstart/hpl/rtc" \
 -I"atstart/hpl/sercom" \
+-I"atstart/hpl/systick" \
 -I"atstart/hpl/tc" \
 -I"atstart/hri" \
--I"atstart/include" \
 -I"../" \
 -I"atstart/CMSIS/Core/Include" \
 -I"atstart/include"
@@ -152,7 +153,9 @@ DEPS_AS_ARGS +=  \
 "atstart/hal/src/hal_calendar.d" \
 "atstart/hal/utils/src/utils_event.d" \
 "atstart/hal/src/hal_io.d" \
+"atstart/hpl/systick/hpl_systick.d" \
 "atstart/hal/utils/src/utils_syscalls.d" \
+"atstart/hal/src/hal_i2c_m_sync.d" \
 "atstart/gcc/gcc/startup_saml22.d" \
 "atstart/hal/src/hal_timer.d" \
 "atstart/hal/src/hal_spi_m_sync.d" \
@@ -172,7 +175,6 @@ DEPS_AS_ARGS +=  \
 "main.d" \
 "atstart/examples/driver_examples.d" \
 "atstart/hpl/rtc/hpl_rtc.d" \
-"atstart/hpl/i2c/i2c_lite.d" \
 "atstart/hal/src/hal_sleep.d" \
 "atstart/gcc/system_saml22.d" \
 "atstart/hpl/sercom/hpl_sercom.d" \
