@@ -164,9 +164,9 @@ clean:
 debug:  $(ELF)
 	openocd &
 	arm-none-eabi-gdb -iex "target extended-remote localhost:3333" $(ELF)
-	killall openocd
+	echo shutdown | netcat 127.0.0.1 4444
 
 upload:  $(ELF)
 	openocd &
 	arm-none-eabi-gdb --batch -x gdb_upload $(ELF)
-	killall openocd
+	echo shutdown | netcat 127.0.0.1 4444
