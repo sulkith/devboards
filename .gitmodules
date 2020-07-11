@@ -1,3 +1,6 @@
 [submodule "ATSAML22G18A_LowPowerArm/Software/I2CTest/lib/SSD1306-AVR"]
 	path = ATSAML22G18A_LowPowerArm/Software/I2CTest/lib/SSD1306-AVR
 	url = git@github.com:sulkith/SSD1306-AVR.git
+[submodule "NUCLEO-L053R8/Software/FirstTest/FirstTest/UserCode/SSD1306-AVR"]
+	path = NUCLEO-L053R8/Software/FirstTest/FirstTest/UserCode/SSD1306-AVR
+	url = git@github.com:sulkith/SSD1306-AVR.git
